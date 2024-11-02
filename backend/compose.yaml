@@ -1,0 +1,50 @@
+services:
+  server:
+    build:
+      context: .
+    secrets:
+      - db-password
+      - db_name
+      - db_user
+    environment:
+      NODE_ENV: production
+      # Add environment variables to read from secrets
+      DB_PASSWORD_FILE: /run/secrets/db-password
+      DB_NAME_FILE: /run/secrets/db_name
+      DB_USER_FILE: /run/secrets/db_user
+      PORT: 3000
+    ports:
+      - 3000:3000
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres
+    restart: always
+    secrets:
+      - db-password
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: example
+      POSTGRES_PASSWORD_FILE: /run/secrets/db-password
+    expose:
+      - 5432
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  db-data:
+
+secrets:
+  db-password:
+    file: ./db_secrets/password.txt
+  db_name:
+    file: ./db_secrets/name.txt
+  db_user:
+    file: ./db_secrets/user.txt

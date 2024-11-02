@@ -1,0 +1,48 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "engines": {
+    "node": "18.20.3"
+  },
+  "scripts": {
+    "build": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json",
+    "start": "node dist/index.js",
+    "dev": "concurrently \"nodemon -r tsconfig-paths/register src/index.ts\" \"npm run prettier-watch\"",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prettier-watch": "onchange \"**/*\" -- prettier --write --ignore-unknown {{changed}}",
+    "lint": "eslint . --ignore-pattern \"dist/\" --ignore-pattern \"node_modules\"",
+    "format": "prettier . --write --ignore-unknown"
+  },
+  "pre-commit": [
+    "format"
+  ],
+  "keywords": [],
+  "author": "Jackson Ogles",
+  "license": "ISC",
+  "description": "Ecommerce App Backend API",
+  "dependencies": {
+    "@prisma/client": "^5.21.1",
+    "dotenv": "16.4.5",
+    "express": "4.21.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.13.0",
+    "@types/eslint__js": "8.42.3",
+    "@types/express": "5.0.0",
+    "@types/node": "22.8.1",
+    "concurrently": "9.0.1",
+    "eslint": "9.13.0",
+    "eslint-config-prettier": "9.1.0",
+    "globals": "15.11.0",
+    "nodemon": "3.1.7",
+    "onchange": "7.1.0",
+    "prettier": "3.3.3",
+    "prisma": "^5.21.1",
+    "ts-node": "10.9.2",
+    "tsc-alias": "1.8.10",
+    "tsconfig-paths": "4.2.0",
+    "typescript": "5.6.3",
+    "typescript-eslint": "8.11.0"
+  }
+}

@@ -1,0 +1,60 @@
+# Node.js
+node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Dependency directories
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional REPL history
+.node_repl_history
+
+# Environment variables
+.env*
+
+# Build artifacts
+dist/
+build/
+
+# IDE/Editor files
+.idea/
+.vscode/
+*.swp
+
+# docker secrets
+secrets/
+db_secrets/
+password.txt
+name.txt
+user.txt
+
+# Prisma
+prisma/*.db
+prisma/*.db-journal
+*.env
+.env*
+migrations/
+/prisma/migrations/
+/prisma/dev.db
+/prisma/dev.db-journal
+
+# Prisma generated files
+generated/
+prisma/generated/
+
+# Keep migration history in git, but ignore dev migrations
+# prisma/migrations/*
+# !prisma/migrations/*/
+# prisma/migrations/*/migration.sql
